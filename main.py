@@ -208,7 +208,7 @@ async def api_install_model(model_id: str, file: UploadFile = File(None), local_
             except (FileNotFoundError, ValueError) as e:
                 raise HTTPException(status_code=400, detail=str(e))
         elif source == "download":
-            url = download_url or os.environ.get(model_registry.GPEN_DOWNLOAD_URL_ENV)
+            url = download_url or model_registry.GPEN_DOWNLOAD_URL
             if not url:
                 raise HTTPException(status_code=400, detail="provide a download URL for a source you trust")
             model_registry.start_gpen_download(url, settings.models_dir)

@@ -11,7 +11,7 @@ INSIGHTFACE_HOME = os.path.expanduser(os.environ.get("INSIGHTFACE_HOME", "~/.ins
 BUFFALO_DIR = os.path.join(INSIGHTFACE_HOME, "models", "buffalo_l")
 BUFFALO_FILES = ["det_10g.onnx", "w600k_r50.onnx", "1k3d68.onnx", "2d106det.onnx", "genderage.onnx"]
 BUFFALO_ZIP_URL = "https://github.com/deepinsight/insightface/releases/download/v0.7/buffalo_l.zip"
-GPEN_DOWNLOAD_URL_ENV = "PERIOCULAR_GPEN_DOWNLOAD_URL"
+GPEN_DOWNLOAD_URL = "https://huggingface.co/hacksider/deep-live-cam/resolve/main/GPEN-BFR-256.onnx"
 _download_jobs: Dict[str, Dict] = {}
 _download_lock = threading.Lock()
 def _set_job(model_id: str, **fields):
@@ -36,7 +36,7 @@ def _gpen_status(path: Optional[str]) -> str:
 def get_registry(gpen_model_path: Optional[str]) -> List[Dict]:
     return [
         {"id": "buffalo_l", "name": "InsightFace buffalo_l (SCRFD-10G + ArcFace R50)", "required": True, "status": _buffalo_status(), "path": BUFFALO_DIR, "installable": True, "install_methods": ["download", "local_path"], "download_url": BUFFALO_ZIP_URL, "description": "Face detection, landmarks and 512-d ArcFace embeddings. Required for /criminals and /search to function at all."},
-        {"id": "gpen_bfr_256", "name": "GPEN-BFR-256 (blind face restoration)", "required": False, "status": _gpen_status(gpen_model_path), "path": gpen_model_path or "", "installable": True, "install_methods": ["download", "local_path", "upload"], "download_url": os.environ.get(GPEN_DOWNLOAD_URL_ENV, ""), "description": "Optional. Powers reconstruction_mode='enhance'. Sharpens an already-captured face crop; does not invent missing regions. Can subtly alter identity-bearing detail - keep opt-in."},
+        {"id": "gpen_bfr_256", "name": "GPEN-BFR-256 (blind face restoration)", "required": False, "status": _gpen_status(gpen_model_path), "path": gpen_model_path or "", "installable": True, "install_methods": ["download", "local_path", "upload"], "download_url": GPEN_DOWNLOAD_URL, "description": "Optional. Powers reconstruction_mode='enhance'. Sharpens an already-captured face crop; does not invent missing regions. Can subtly alter identity-bearing detail - keep opt-in."},
         {"id": "dwksvd_gan_hallucinate", "name": "DW-KSVD + GAN periocular-to-full-face hallucination", "required": False, "status": "not_implemented", "path": "", "installable": False, "install_methods": [], "description": "Optional, NOT AVAILABLE. No maintained open-source checkpoint exists for this; would require training a dictionary + conditional GAN on paired periocular/full-face data. reconstruction_mode='hallucinate' calls this and no-ops with a warning rather than fabricating output."},
         {"id": "inswapper_128", "name": "inswapper_128 (face-swap, excluded)", "required": False, "status": "excluded", "path": "", "installable": False, "install_methods": [], "description": "Excluded on purpose. This is a face-swap model, not a reconstruction model - it pastes a separate source identity onto a target image. Using it here would hand investigators a photorealistic image of the wrong person with no indication it was fabricated. Not wired into this pipeline."},
     ]
