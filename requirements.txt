@@ -1,15 +1,15 @@
 numpy>=2.0,<3
 typing-extensions>=4.15.0
-opencv-python-headless==4.14.0.94
+opencv-python-headless==5.0.0.93
 insightface==0.7.3
-pillow>=10.0.0,<13
+pillow>=12.3.0,<13
 onnx>=1.22.0,<2
 protobuf>=6.33.5,<8
 onnxruntime-gpu==1.26.0; sys_platform != "darwin"
-onnxruntime==1.28.0; sys_platform == "darwin" and platform_machine == "arm64"
+onnxruntime==1.30.0; sys_platform == "darwin" and platform_machine == "arm64"
 onnxruntime==1.23.0; sys_platform == "darwin" and platform_machine != "arm64"
 fastapi>=0.115,<1
-uvicorn[standard]>=0.34,<1
+uvicorn[standard]>=0.53.0,<1
 python-multipart>=0.0.20,<1
-pydantic-settings>=2.5,<3
+pydantic-settings>=2.15.0,<3
 jinja2>=3.1,<4
