@@ -3,7 +3,7 @@ typing-extensions>=4.15.0
 opencv-python-headless==5.0.0.93
 insightface==0.7.3
 pillow>=12.3.0,<13
-onnx>=1.22.0,<2
+onnx>=1.23.0,<2
 protobuf>=6.33.5,<8
 onnxruntime-gpu==1.26.0; sys_platform != "darwin"
 onnxruntime==1.30.0; sys_platform == "darwin" and platform_machine == "arm64"
