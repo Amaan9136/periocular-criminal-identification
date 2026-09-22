@@ -1,0 +1,15 @@
+data/
+models/
+static/*.jpg
+static/*.jpeg
+static/*.png
+!static/css/
+!static/js/
+__pycache__/
+*.pyc
+.env
+*.db
+*.db-wal
+*.db-shm
+
+repomix-output.*

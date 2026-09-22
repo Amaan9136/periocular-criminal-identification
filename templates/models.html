@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="pagetitle">Models</div>
+<div class="pagesub">Status of every model this pipeline can use. Required models must be active for /criminals and /search to work.</div>
+<div id="models-list"></div>
+{% endblock %}
+{% block scripts %}<script>loadModels()</script>{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="pagetitle">Dashboard</div>
+<div class="pagesub">Investigative lead generator - reconstructions and matches are leads for a human analyst, never standalone identification.</div>
+<div class="grid">
+<div class="card"><h3>Gallery size</h3><div class="value" id="stat-gallery">-</div><div class="hint">criminal embeddings stored</div></div>
+<div class="card"><h3>Vector store backend</h3><div class="value" id="stat-backend">-</div><div class="hint">sqlite or in_memory</div></div>
+<div class="card"><h3>Vector index status</h3><div class="value" id="stat-vindex">-</div><div class="hint">Exact numpy cosine search</div></div>
+<div class="card"><h3>Recent searches shown</h3><div class="value" id="stat-searches">-</div></div>
+</div>
+<div class="panel">
+<h2>Recent search activity</h2>
+<table>
+<thead><tr><th>Probe</th><th>Mode</th><th>Top match</th><th>Time</th></tr></thead>
+<tbody id="recent-logs"></tbody>
+</table>
+</div>
+<div class="footer-note">Default backend is SQLite (built into Python, single file, no server). Similarity search is an exact cosine scan over an in-memory numpy matrix, which is fast for galleries up to several hundred thousand embeddings.</div>
+{% endblock %}
+{% block scripts %}<script>loadDashboard()</script>{% endblock %}

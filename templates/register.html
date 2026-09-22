@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="pagetitle">Register Criminal</div>
+<div class="pagesub">Upload one or more full-face images. Each is embedded via ArcFace and stored with the given ID.</div>
+<div class="panel">
+<form id="register-form" onsubmit="registerCriminal(event)">
+<div class="row">
+<div><label>Criminal ID</label><input type="text" name="criminal_id" required></div>
+<div><label>Name</label><input type="text" name="name"></div>
+</div>
+<label>Metadata (JSON)</label>
+<textarea name="metadata">{}</textarea>
+<label>Full-face images</label>
+<input type="file" name="images" multiple accept="image/*" required>
+<button type="submit">Register</button>
+</form>
+<div id="register-result" style="margin-top:16px"></div>
+</div>
+{% endblock %}

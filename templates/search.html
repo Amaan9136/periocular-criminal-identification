@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="pagetitle">Identify / Search</div>
+<div class="pagesub">Upload one or more partial/occluded probe images to search the gallery for candidate matches.</div>
+<div class="panel">
+<form id="search-form" onsubmit="searchFaces(event)">
+<div class="row">
+<div><label>Probe ID</label><input type="text" name="probe_id" placeholder="auto-generated if blank"></div>
+<div><label>Top K</label><input type="number" name="top_k" value="10"></div>
+</div>
+<div class="row">
+<div>
+<label>Reconstruction mode</label>
+<select name="reconstruction_mode">
+<option value="none">none (use probe as-is)</option>
+<option value="enhance">enhance (GPEN restoration, if installed)</option>
+<option value="hallucinate">hallucinate (not implemented - logs a warning)</option>
+</select>
+</div>
+<div><label>&nbsp;</label><label><input type="checkbox" name="use_periocular_only"> Embed periocular crop only</label></div>
+</div>
+<label>Probe images</label>
+<input type="file" name="images" multiple accept="image/*" required>
+<button type="submit">Search</button>
+</form>
+</div>
+<div id="search-result"></div>
+{% endblock %}
